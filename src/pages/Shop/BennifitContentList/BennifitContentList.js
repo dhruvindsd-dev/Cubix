@@ -6,32 +6,39 @@ import BennifitContent from "../../../layouts/BennifitContent/BennifitContent";
 import Loader from "../../../components/Loader/Loader";
 
 const BennifitContentList = () => {
-  const [IsLoading, setIsLoading] = useState(true);
-  const [benifitData, setbenifitData] = useState(null);
+  const [State, setState] = useState({
+    IsLoading: true,
+    data: null,
+  });
+  // const [IsLoading, setIsLoading] = useState(true);
+  // const [benifitData, setbenifitData] = useState(null);
   useEffect(() => {
-    if (CACHE.has("/")) {
-      setbenifitData(CACHE.get("/"));
-      setIsLoading(false);
+    if (CACHE.has("/bennifitContent")) {
+      setState({
+        IsLoading: false,
+        data: CACHE.get("/bennifitContent"),
+      });
     } else {
       axiosInstance
         .get("/home-page")
         .then((response) => {
-          setbenifitData(response.data);
-          CACHE.set("/", response.data);
-          setIsLoading(false);
+          setState({
+            IsLoading: false,
+            data: response.data,
+          });
+          CACHE.set("/bennifitContent", response.data);
         })
         .catch((error) => {});
     }
   }, []);
   let bennifitContent;
-  if (IsLoading) {
-    bennifitContent = <Loader />;
-  } else {
-    bennifitContent = Object.keys(benifitData).map((item, i) => (
-      <BennifitContent key={i} title={item} cards={benifitData[item]} />
+  if (State.IsLoading) bennifitContent = <Loader />;
+  else
+    bennifitContent = Object.keys(State.data).map((item, i) => (
+      <BennifitContent key={i} title={item} cards={State.data[item]} />
     ));
-  }
-  return <React.Fragment> {bennifitContent}</React.Fragment>;
+
+  return <> {bennifitContent}</>;
 };
 
 export default BennifitContentList;

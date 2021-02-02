@@ -2,44 +2,32 @@ import { motion } from "framer-motion";
 import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import { withRouter } from "react-router";
-import { axiosInstance, routesVariants } from "../../App";
+import { axiosInstance, ROUTER_VARIANTS } from "../../App";
 import cube from "../../assets/images/HomeHeroCube.png";
 
 import Loader from "../../components/Loader/Loader";
-import { ADD_ITEM } from "../../store/actions/actions";
 import ProductMoreDetails from "./ProductMoreDetails/ProductMoreDetails";
 import ProductPageMainContent from "./ProductPageMainContent/ProductPageMainContent";
 
 const Product = (props) => {
-  const [IsLoading, setIsLoading] = useState(true);
-  const [ProductData, setProductData] = useState(null);
-
+  const [State, setState] = useState({
+    isLoading: true,
+    data: null,
+  });
   useEffect(() => {
-    // get data from backendq
     axiosInstance
       .get(`get-product-data/${props.match.params.id}`)
       .then((response) => {
-        setProductData(response.data.product);
-        setIsLoading(false);
+        setState({
+          isLoading: false,
+          data: response.data,
+        });
       })
       .catch((error) => {});
   }, []);
-
   let page;
-  if (IsLoading) {
-    page = (
-      <div
-        className="section"
-        style={{
-          minHeight: "70vh",
-          display: "flex",
-          alignItems: "center",
-        }}
-      >
-        <Loader />
-      </div>
-    );
-  } else {
+  if (State.isLoading) page = <Loader />;
+  else
     page = (
       <div className="section has-text-light">
         <div className="columns">
@@ -55,7 +43,6 @@ const Product = (props) => {
 
               <motion.img
                 src={cube}
-                alt=""
                 className="is-overlay"
                 style={{ objectFit: "contain" }}
               />
@@ -64,22 +51,21 @@ const Product = (props) => {
           <div className="column is-4">
             <ProductPageMainContent
               isAuth={props.isAuthenticated}
-              ProductData={ProductData}
+              ProductData={State.data}
             />
           </div>
           <div className="column is-3">
             <ProductMoreDetails
               isAuth={props.isAuthenticated}
-              ProductData={ProductData}
+              ProductData={State.data}
             />
           </div>
         </div>
       </div>
     );
-  }
   return (
     <motion.div
-      variants={routesVariants}
+      variants={ROUTER_VARIANTS}
       initial="initial"
       animate="animate"
       exit="exit"

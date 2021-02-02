@@ -7,6 +7,9 @@
   -webkit-backface-visibility: hidden */
   scroll-behavior: smooth;
 }
+html {
+  overflow-x: hidden;
+}
 
 body {
   color: rgb(167, 167, 167);
@@ -45,4 +48,17 @@ img {
 span {
   display: inline-block;
   position: relative;
+}
+.no-scroll {
+  overflow-y: hidden;
+}
+
+.no-mobile-section {
+  padding: 3rem 1.5rem;
+}
+
+@media (max-width: 1024px) {
+  .no-mobile-section {
+    padding: 2.5rem 0rem;
+  }
 }

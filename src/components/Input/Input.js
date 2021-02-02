@@ -1,14 +1,10 @@
-import React, { useEffect, useRef } from "react";
+import React from "react";
 
 const Input = (props) => {
-  // console.log("rendered", props);
   let invalidClass = "";
   if (!props.valid && props.touched) {
     invalidClass = "is-primary";
   }
-  useEffect(() => {
-    console.log("render", props.value);
-  }, []);
   return (
     <div className="field">
       <div className="control">

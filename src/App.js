@@ -1,6 +1,5 @@
 import React, { lazy, Suspense } from "react";
 import { Route, Switch, useLocation } from "react-router";
-import { BrowserRouter } from "react-router-dom";
 import "./assets/css/bulma/bulma.css";
 import "./App.css";
 import "../node_modules/@fortawesome/fontawesome-free/css/all.css";
@@ -16,31 +15,25 @@ import { AnimatePresence } from "framer-motion";
 // smert ones =>same folder different file
 
 // small bug : when the user logs in for the firsttime the headers are not added, since the instance has aldready been initilized, adding the logic to the inter ceptor will solve it
-const token = localStorage.getItem("authToken");
-let headers = {};
-if (token) {
-  headers.Authorization = `Token ${token}`;
-}
+
 export const axiosInstance = Axios.create({
   baseURL: "http://127.0.0.1:8000/",
   timeout: 3000,
-  headers: headers,
 });
 
 export const CACHE = new Map();
 
 // lazy loading
-
 const Home = lazy(() => import("./pages/Home/Home"));
 const Shop = lazy(() => import("./pages/Shop/Shop"));
-const UserAuth = lazy(() => import("./pages/UserAuth/UserAuth"));
-const Orders = lazy(() => import("./pages/Orders/Orders"));
 const Product = lazy(() => import("./pages/Product/Product"));
 const Cart = lazy(() => import("./pages/Cart/Cart"));
 const Search = lazy(() => import("./pages/Search/Search"));
+const UserAuth = lazy(() => import("./pages/UserAuth/UserAuth"));
+const Orders = lazy(() => import("./pages/Orders/Orders"));
 const WishList = lazy(() => import("./pages/WishList/WishList"));
 
-export const routesVariants = {
+export const ROUTER_VARIANTS = {
   initial: { opacity: 0, x: -20 },
   animate: { opacity: 1, x: 0, transition: { duration: 0.3 } },
   exit: { opacity: 0, x: 100, transition: { duration: 0.3 } },
@@ -56,6 +49,7 @@ function App(props) {
   if (username && authToken && email) {
     props.login(username, authToken, email);
   }
+
   return (
     <>
       <Navbar />

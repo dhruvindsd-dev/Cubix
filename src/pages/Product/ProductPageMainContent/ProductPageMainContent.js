@@ -2,20 +2,16 @@ import React, { useState } from "react";
 import { connect } from "react-redux";
 import { withRouter } from "react-router";
 import { axiosInstance } from "../../../App";
+import Rating from "../../../components/Rating/Rating";
+import { getPriceFromDiscount } from "../../../shared";
 import { ADD_ITEM } from "../../../store/actions/actions";
 
-const ProductPageMainContent = ({
-  ProductData,
-  addCartItem,
-  isAuth,
-  history,
-  match,
-  location,
-}) => {
+const ProductPageMainContent = (props) => {
+  const { ProductData, addCartItem, isAuth, history } = props;
   const [IsBtnLoading, setIsBtnLoading] = useState(false);
   const handleAddCart = () => {
     // 1. user is not auth : addredux and redirect to cart ,
-    // 2. user is auth : addredux,loading , and after loading redirect to cart
+    // 2. user is auth : addredux, send data to backend and AFTER YOU GET THE RESPONSE REDIRECT TO CART
     addCartItem({
       id: ProductData.id,
       title: ProductData.title,
@@ -24,31 +20,20 @@ const ProductPageMainContent = ({
       discount: ProductData.discount,
     });
     if (isAuth) {
-      // save to backend server
       setIsBtnLoading(true);
-      axiosInstance.put(`cart/add/${ProductData.id}`).then((response) => {
+      axiosInstance.put(`cart/add/${ProductData.id}`).then(() => {
         history.push("/cart");
       });
-    } else {
-      history.push("/cart");
-    }
+    } else history.push("/cart");
   };
   return (
-    <div className="section">
+    <div className="no-mobile-section">
       <p>
         <span className="is-size-2 has-text-weight-bold">
           {ProductData.title}
         </span>
         <br />
-        <span className="is-size-7">
-          <span className="l-opacity has-text-light mr-1">Rating :</span>
-          {Array(ProductData.rating)
-            .fill(1)
-            .map((item, i) => (
-              <i key={i} className="fas fa-star has-text-warning"></i>
-            ))}
-        </span>
-        <br />
+        <Rating num={ProductData.rating} />
       </p>
       <p className="is-size-4">
         <span className="is-size-7" style={{ textDecoration: "line-through" }}>
@@ -56,16 +41,14 @@ const ProductPageMainContent = ({
         </span>
         <br />
         <span className="is-size-6 l-opacity">Price : </span>
-        <span className="mr-1">₹</span>
-        {Math.floor(
-          ProductData.price - (ProductData.price * ProductData.discount) / 100
-        )}
+        <span className="ml-2">₹</span>
+        {getPriceFromDiscount(ProductData.price, ProductData.discount)}
       </p>
       <br />
       <br />
       <p className="is-size-7 l-opacity">Product Description :</p>
       <p className="content">{ProductData.description}</p>
-      <hr />
+      <hr className="l-opacity" />
       <p className="is-size-7">
         <span className="has-text-light l-opacity">
           <span className="mr-2">Availability :</span>
@@ -82,7 +65,7 @@ const ProductPageMainContent = ({
             No Contact Delivery AvailAble
           </span>
         ) : (
-          <span className=" has-text-primary">
+          <span className="has-text-primary">
             No Contact Delivery Not AvailAble
           </span>
         )}
@@ -103,7 +86,9 @@ const ProductPageMainContent = ({
     </div>
   );
 };
-const mapStateToProps = (state) => {};
+const mapStateToProps = (state) => {
+  return {};
+};
 const mapDispatchToProps = (dispatch) => {
   return {
     addCartItem: (cartObj) => {

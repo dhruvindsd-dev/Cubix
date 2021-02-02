@@ -2,6 +2,8 @@ import { AnimatePresence, motion } from "framer-motion";
 import React from "react";
 import { withRouter } from "react-router";
 import Cube from "../../../assets/images/products/megamix.webp";
+import { getPriceFromDiscount } from "../../../shared";
+import Rating from "../../Rating/Rating";
 // import "./card1.css";
 const parentVarient = {
   initial: {},
@@ -20,9 +22,6 @@ const childVariant = {
   },
 };
 const Card1 = (props) => {
-  let rating = Array(props.smallCardObj.rating)
-    .fill(1)
-    .map((item, i) => <i key={i} className="fas fa-star has-text-warning"></i>);
   return (
     <motion.div
       variants={parentVarient}
@@ -49,17 +48,12 @@ const Card1 = (props) => {
         <p className="is-size-4 mb-1 hover-pointer">
           {props.smallCardObj.title}
         </p>
-        <p className="is-size-7 mb-1">
-          <span>
-            <span className="less-opacity">Rating : </span>
-            {rating}
-          </span>
-        </p>
+        <Rating num={props.smallCardObj.rating} />
         <span className="is-size-5">
           <sup>₹</sup>
-          {Math.floor(
-            props.smallCardObj.price -
-              (props.smallCardObj.price * props.smallCardObj.discount) / 100
+          {getPriceFromDiscount(
+            props.smallCardObj.price,
+            props.smallCardObj.discount
           )}
         </span>
         <span

@@ -1,26 +1,25 @@
 import { motion } from "framer-motion";
 import React, { useEffect, useState } from "react";
 import { Link, withRouter } from "react-router-dom";
-import { routesVariants } from "../../App";
+import { ROUTER_VARIANTS } from "../../App";
 import Logo from "../../components/Logo/Logo";
 import InputList from "./InputList/InputList";
 
 const UserAuth = (props) => {
   const [IsSignUp, setIsSignUp] = useState(false);
-
   useEffect(() => {
-    if (props.match.params.type == "signin") {
+    if (props.match.params.type === "signin" && IsSignUp !== false)
       setIsSignUp(false);
-    } else if (props.match.params.type === "signup") {
+    else if (props.match.params.type === "signup" && IsSignUp !== true)
       setIsSignUp(true);
-    } else {
+    else {
       //   redirect to 404
     }
   }, [props.match.params.type]);
 
   return (
     <motion.div
-      variants={routesVariants}
+      variants={ROUTER_VARIANTS}
       initial="initial"
       animate="animate"
       exit="exit"

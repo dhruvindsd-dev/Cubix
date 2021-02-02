@@ -5,7 +5,7 @@ let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
 const initialState = {
   cart: cart,
-  isCartSync: false,
+  hasCartLoaded: false,
 };
 
 export default (state = initialState, { type, payload }) => {
@@ -30,7 +30,7 @@ export default (state = initialState, { type, payload }) => {
       return { ...state, cart: cart };
     case actionTypes.LOAD_CART:
       localStorage.setItem("cart", JSON.stringify(payload.cart));
-      return { ...state, cart: payload.cart, isCartSync: true };
+      return { ...state, cart: payload.cart, hasCartLoaded: true };
     case actionTypes.CLEAR_CART:
       return { ...state, cart: [] };
     default:

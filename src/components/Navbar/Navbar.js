@@ -4,7 +4,6 @@ import { Link, NavLink, withRouter } from "react-router-dom";
 import Logo from "../Logo/Logo";
 import "./navbar.css";
 const Navbar = (props) => {
-  console.log(props);
   const [isSpaced, setisSpaced] = useState(true);
   const [IsActive, setIsActive] = useState(false);
   const searchText = useRef(null);
@@ -16,8 +15,8 @@ const Navbar = (props) => {
         setisSpaced(true);
       }
     });
-  });
-  if (props.location.pathname == "/") {
+  }, [isSpaced]);
+  if (props.location.pathname === "/") {
     return null;
   }
   return (
