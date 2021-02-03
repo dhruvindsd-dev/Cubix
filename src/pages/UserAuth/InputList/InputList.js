@@ -1,4 +1,4 @@
-import React, { useEffect, useState, Component } from "react";
+import React, { Component } from "react";
 import { connect } from "react-redux";
 import { withRouter } from "react-router";
 import { axiosInstance } from "../../../App";
@@ -149,7 +149,6 @@ class InputList extends Component {
     );
     updatedFormElement.touched = true;
     updateForm[identifier] = updatedFormElement;
-    console.log(updateForm);
     let formValidity = true;
     for (let item in updateForm) {
       if (!updateForm[item].valid) {
@@ -185,7 +184,7 @@ class InputList extends Component {
       })
       .catch((err) => {
         let error;
-        if (err.response.data.error == "user_exists")
+        if (err.response.data.error === "user_exists")
           error = "User aldready exixts. Please create a new username ";
         else error = "Invlid Credentials";
         this.setState({

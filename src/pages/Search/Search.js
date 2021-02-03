@@ -39,8 +39,8 @@ const Search = (props) => {
     results = (
       <div className="columns is-multiline">
         {State.data.map((item, i) => (
-          <div className=" column is-3">
-            <Card1 smallCardObj={item} key={i} />
+          <div className=" column is-3" key={i}>
+            <Card1 smallCardObj={item} />
           </div>
         ))}
       </div>

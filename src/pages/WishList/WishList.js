@@ -1,57 +1,34 @@
 import { motion } from "framer-motion";
 import React, { useEffect, useState } from "react";
+import { withRouter } from "react-router";
 import { axiosInstance, CACHE, ROUTER_VARIANTS } from "../../App";
 import Loader from "../../components/Loader/Loader";
 import Card2 from "../../components/ProductCard/Card2/Card2";
+import useFetchWithCache from "../../Hooks/Fetch";
 
-const WishList = () => {
-  // const [WishList, setWishList] = useState([]);
-  const [State, setState] = useState({
-    isLoading: false,
-    data: [],
-  });
-  useEffect(() => {
-    if (CACHE.has("/wishlist")) {
-      setState({
-        ...State,
-        data: CACHE.get("/wishlist"),
-      });
-    } else {
-      setState({
-        ...State,
-        isLoading: true,
-      });
-      axiosInstance.get("get-user-wishlist").then((response) => {
-        setState({
-          isLoading: false,
-          data: response.data.products,
-        });
-        CACHE.set("/wishlist", response.data.products);
-      });
-    }
-  }, []);
+const WishList = (props) => {
+  const [data, isLoading, setData] = useFetchWithCache(
+    "/get-user-wishlist",
+    props.match.path
+  );
   const handleRemove = (id) => {
     axiosInstance.put(`wishList/remove/${id}`).then(() => {});
-    const list = State.data.filter((item) => item.id !== id);
-    setState({
-      ...State,
-      data: list,
-    });
+    const list = data.filter((item) => item.id !== id);
+    setData(list);
   };
   let wishlist;
-  if (State.isLoading) wishlist = <Loader />;
-  else if (State.data.length === 0)
+  if (isLoading) wishlist = <Loader />;
+  else if (data.length === 0)
     wishlist = <p className="is-size-6">No Items Found In WishList</p>;
   else
-    wishlist = State.data.map((item, i) => (
-      <div className="column is-4">
+    wishlist = data.map((item, i) => (
+      <div className="column is-4" key={i}>
         <Card2
           title={item.title}
           price={item.price}
           discount={item.discount}
           id={item.id}
           removeClick={handleRemove.bind(this, item.id)}
-          key={i}
         />
       </div>
     ));
@@ -70,4 +47,4 @@ const WishList = () => {
     </motion.div>
   );
 };
-export default WishList;
+export default withRouter(WishList);

@@ -1,32 +1,20 @@
 import { motion } from "framer-motion";
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
 import { axiosInstance, CACHE, ROUTER_VARIANTS } from "../../App";
 import Loader from "../../components/Loader/Loader";
 import Card2 from "../../components/ProductCard/Card2/Card2";
+import useFetchWithCache from "../../Hooks/Fetch";
 import SideBar from "./SideBar";
 
-const Orders = () => {
-  const [State, setState] = useState({
-    isLoading: false,
-    data: [],
-  });
-  // const [OrdersList, setOrdersList] = useState([]);
-  // const [IsLoading, setIsLoading] = useState(false);
-  useEffect(() => {
-    if (CACHE.has("/orders")) {
-      setState({ ...State, data: CACHE.get("/orders") });
-    } else {
-      setState({ ...State, isLoading: true });
-      axiosInstance.get("get-user-orders").then((response) => {
-        CACHE.set("/orders", response.data);
-        setState({ data: response.data, isLoading: false });
-      });
-    }
-  }, []);
+const Orders = (props) => {
+  const [data, isLoading] = useFetchWithCache(
+    "/get-user-orders",
+    props.match.path
+  );
   let orders;
-  if (State.isLoading) orders = <Loader />;
-  else if (State.data.length === 0)
+  if (isLoading) orders = <Loader />;
+  else if (data.length === 0)
     orders = (
       <p>
         No Previous Order Found. <Link to="/shop">Click here</Link> to shop
@@ -34,7 +22,7 @@ const Orders = () => {
       </p>
     );
   else
-    orders = State.data.map((item, i) => (
+    orders = data.map((item, i) => (
       <Card2
         title={item.title}
         date={item.date}
@@ -63,4 +51,4 @@ const Orders = () => {
     </motion.div>
   );
 };
-export default Orders;
+export default withRouter(Orders);

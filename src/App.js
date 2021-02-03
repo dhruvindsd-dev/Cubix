@@ -129,7 +129,7 @@ function App(props) {
             )}
           />
           <Route
-            path="/wishList"
+            path="/wishlist"
             render={() => (
               <Suspense fallback={<Loader />}>
                 <WishList />

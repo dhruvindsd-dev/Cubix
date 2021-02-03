@@ -1,44 +1,22 @@
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import { axiosInstance, CACHE } from "../../../App";
 
 import React from "react";
 import BennifitContent from "../../../layouts/BennifitContent/BennifitContent";
 import Loader from "../../../components/Loader/Loader";
+import { withRouter } from "react-router";
+import useFetchWithCache from "../../../Hooks/Fetch";
 
-const BennifitContentList = () => {
-  const [State, setState] = useState({
-    IsLoading: true,
-    data: null,
-  });
-  // const [IsLoading, setIsLoading] = useState(true);
-  // const [benifitData, setbenifitData] = useState(null);
-  useEffect(() => {
-    if (CACHE.has("/bennifitContent")) {
-      setState({
-        IsLoading: false,
-        data: CACHE.get("/bennifitContent"),
-      });
-    } else {
-      axiosInstance
-        .get("/home-page")
-        .then((response) => {
-          setState({
-            IsLoading: false,
-            data: response.data,
-          });
-          CACHE.set("/bennifitContent", response.data);
-        })
-        .catch((error) => {});
-    }
-  }, []);
+const BennifitContentList = (props) => {
+  const [data, isLoading] = useFetchWithCache("/home-page", props.match.path);
   let bennifitContent;
-  if (State.IsLoading) bennifitContent = <Loader />;
+  if (isLoading) bennifitContent = <Loader />;
   else
-    bennifitContent = Object.keys(State.data).map((item, i) => (
-      <BennifitContent key={i} title={item} cards={State.data[item]} />
+    bennifitContent = Object.keys(data).map((item, i) => (
+      <BennifitContent key={i} title={item} cards={data[item]} />
     ));
 
   return <> {bennifitContent}</>;
 };
 
-export default BennifitContentList;
+export default withRouter(BennifitContentList);

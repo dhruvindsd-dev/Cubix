@@ -25,10 +25,14 @@ const Product = (props) => {
       })
       .catch((error) => {});
   }, []);
-  let page;
-  if (State.isLoading) page = <Loader />;
-  else
-    page = (
+  if (State.isLoading) return <Loader />;
+  return (
+    <motion.div
+      variants={ROUTER_VARIANTS}
+      initial="initial"
+      animate="animate"
+      exit="exit"
+    >
       <div className="section has-text-light">
         <div className="columns">
           <div className="column is-5">
@@ -62,15 +66,6 @@ const Product = (props) => {
           </div>
         </div>
       </div>
-    );
-  return (
-    <motion.div
-      variants={ROUTER_VARIANTS}
-      initial="initial"
-      animate="animate"
-      exit="exit"
-    >
-      {page}
     </motion.div>
   );
 };
