@@ -16,7 +16,24 @@ const UserAuth = (props) => {
       //   redirect to 404
     }
   }, [props.match.params.type]);
-
+  // if the user does any action which can only be done when the user is authenticated then redirect to the same page he came from and display a custome message
+  const routeState = props.location.state;
+  let message;
+  if (routeState) {
+    message = routeState.message;
+  } else {
+    message = (
+      <>
+        {IsSignUp ? "SignUp" : "Signin"} with <Logo />
+      </>
+    );
+  }
+  // using a septate function to achieve routing changes since we have to redirect the user to same page he was comming from. this method the will pass the location routes state from when the user is switching from sign to signup
+  const handleRouting = (to) => {
+    let toPassState = {};
+    if (routeState) toPassState = routeState;
+    props.history.push(to, toPassState);
+  };
   return (
     <motion.div
       variants={ROUTER_VARIANTS}
@@ -27,22 +44,20 @@ const UserAuth = (props) => {
     >
       <div className="column is-5">
         <div className="box  has-text-centered">
-          <p className="p-3 is-size-4">
-            {IsSignUp ? "Sign-Up" : "Login"} with <Logo />
-          </p>
+          <p className="p-3 is-size-4">{message}</p>
           <div className="buttons is-centered">
-            <Link
-              to="/user/auth/signin"
-              className={"button is-primary  " + (!IsSignUp ? "" : "is-light")}
+            <button
+              onClick={handleRouting.bind(this, "./signin")}
+              className={"button is-primary " + (!IsSignUp ? "" : "is-light")}
             >
               Login
-            </Link>
-            <Link
-              to="/user/auth/signup"
+            </button>
+            <button
+              onClick={handleRouting.bind(this, "./signup")}
               className={"button is-primary  " + (IsSignUp ? "" : "is-light")}
             >
               Register
-            </Link>
+            </button>
           </div>
           <div className="box has-background-light">
             <div className="buttons is-centered">
@@ -60,7 +75,10 @@ const UserAuth = (props) => {
               </button>
             </div>
             <p className="my-3 has-text-weight-bold"> - OR - </p>
-            <InputList isSignUp={IsSignUp} />
+            <InputList
+              isSignUp={IsSignUp}
+              redirect={routeState ? routeState.toRedirectAfterAuth : null}
+            />
           </div>
         </div>
       </div>

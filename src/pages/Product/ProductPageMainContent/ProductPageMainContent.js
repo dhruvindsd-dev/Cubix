@@ -13,11 +13,7 @@ const ProductPageMainContent = (props) => {
     // 1. user is not auth : addredux and redirect to cart ,
     // 2. user is auth : addredux, send data to backend and AFTER YOU GET THE RESPONSE REDIRECT TO CART
     addCartItem({
-      id: ProductData.id,
-      title: ProductData.title,
-      avalibility: ProductData.avalibility,
-      price: ProductData.price,
-      discount: ProductData.discount,
+      ...ProductData,
     });
     if (isAuth) {
       setIsBtnLoading(true);
@@ -29,7 +25,7 @@ const ProductPageMainContent = (props) => {
   return (
     <div className="no-mobile-section">
       <p>
-        <span className="is-size-2 has-text-weight-bold">
+        <span className="is-size-3 has-text-weight-bold">
           {ProductData.title}
         </span>
         <br />

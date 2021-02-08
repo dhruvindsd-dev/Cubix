@@ -1,5 +1,5 @@
 import React from "react";
-import Grid from "./Grid/Grid";
+import GridList from "./Grid/GridList";
 import graphicCube from "../../assets/images/cube1.jpg";
 import { motion } from "framer-motion";
 import { ROUTER_VARIANTS } from "../../App";
@@ -15,7 +15,7 @@ const Shop = () => {
     >
       <HomeNewProduct />
       <BennifitContentList />
-      <Grid />
+      <GridList />
     </motion.div>
   );
 };

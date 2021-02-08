@@ -1,12 +1,14 @@
 import React, { useEffect, useRef, useState } from "react";
 import { connect } from "react-redux";
 import { Link, NavLink, withRouter } from "react-router-dom";
+import { gridData } from "../../pages/Shop/Grid/GridList";
 import Logo from "../Logo/Logo";
 import "./navbar.css";
 const Navbar = (props) => {
   const [isSpaced, setisSpaced] = useState(true);
   const [IsActive, setIsActive] = useState(false);
   const searchText = useRef(null);
+  const catagoryOption = useRef(null);
   useEffect(() => {
     window.addEventListener("scroll", (event) => {
       if (window.scrollY > 50) {
@@ -19,6 +21,13 @@ const Navbar = (props) => {
   if (props.location.pathname === "/") {
     return null;
   }
+  const handleSearch = () => {
+    console.log("handle search");
+    props.history.push(
+      `/search?search=${searchText.current.value}&catagory=${catagoryOption.current.value}`
+    );
+    searchText.current.value = "";
+  };
   return (
     <nav
       className={
@@ -51,23 +60,29 @@ const Navbar = (props) => {
         <div className="navbar-end">
           <div className="navbar-item">
             <div className="field has-addons">
-              <div className="control has-icons-left">
-                <input ref={searchText} type="text" className="input" />
-                <span className="icon is-left">
-                  <i className="fas fa-search"></i>
+              <div className="control">
+                <span className="select">
+                  <select ref={catagoryOption} onChange={handleSearch}>
+                    <option value="all">All</option>
+                    {gridData.map((item) => (
+                      <option value={item.value}>{item.title}</option>
+                    ))}
+                  </select>
                 </span>
               </div>
               <div className="control">
-                <button
-                  className="button is-primary"
-                  onClick={() => {
-                    props.history.push(
-                      `/search?search=${searchText.current.value}`
-                    );
-                    searchText.current.value = "";
-                  }}
-                >
-                  Search
+                <input
+                  ref={searchText}
+                  placeholder="Search for the latest Cubes"
+                  type="text"
+                  className="input"
+                />
+              </div>
+              <div className="control">
+                <button className="button is-primary" onClick={handleSearch}>
+                  <span className="icon">
+                    <i className="fas fa-search"></i>
+                  </span>
                 </button>
               </div>
             </div>

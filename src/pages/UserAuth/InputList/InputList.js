@@ -180,7 +180,9 @@ class InputList extends Component {
           response.data.username,
           response.data.email
         );
-        this.props.history.push("/orders");
+        console.log(this.props.redirect);
+        if (this.props.redirect) this.props.history.push(this.props.redirect);
+        else this.props.history.push("/orders");
       })
       .catch((err) => {
         let error;

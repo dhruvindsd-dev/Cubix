@@ -28,6 +28,7 @@ const WishList = (props) => {
           price={item.price}
           discount={item.discount}
           id={item.id}
+          img={item.img}
           removeClick={handleRemove.bind(this, item.id)}
         />
       </div>

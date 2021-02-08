@@ -12,6 +12,7 @@ const MainCart = (props) => {
       if (!props.hasCartLoaded) {
         setIsLoading(true);
         axiosInstance.get("get-user-cart").then((response) => {
+          console.log(response.data);
           props.loadCart(response.data.products);
           setIsLoading(false);
         });
@@ -35,6 +36,7 @@ const MainCart = (props) => {
         price={item.price}
         discount={item.discount}
         id={item.id}
+        img={item.img}
         removeClick={handleRemoveItem.bind(this, item.id)}
         key={i}
       />

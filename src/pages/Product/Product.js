@@ -35,7 +35,7 @@ const Product = (props) => {
     >
       <div className="section has-text-light">
         <div className="columns">
-          <div className="column is-5">
+          <div className="column is-4">
             <figure
               className="image is-relative"
               style={{
@@ -43,16 +43,14 @@ const Product = (props) => {
                   "radial-gradient(rgb(255, 0, 0), rgba(255, 0, 0, 0.445), rgba(0, 0, 0, 0), rgba(0, 0, 0, 0))",
               }}
             >
-              <img src={cube} alt="" style={{ objectFit: "contain" }} />
-
               <motion.img
-                src={cube}
+                src={State.data.img}
                 className="is-overlay"
                 style={{ objectFit: "contain" }}
               />
             </figure>
           </div>
-          <div className="column is-4">
+          <div className="column is-5">
             <ProductPageMainContent
               isAuth={props.isAuthenticated}
               ProductData={State.data}

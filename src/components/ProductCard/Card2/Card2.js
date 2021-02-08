@@ -1,6 +1,5 @@
 import React from "react";
 import { connect } from "react-redux";
-import cube from "../../../assets/images/HomeHeroCube.png";
 import { getPriceFromDiscount } from "../../../shared";
 
 const Card2 = ({
@@ -8,6 +7,7 @@ const Card2 = ({
   id,
   price,
   discount,
+  img,
   removeClick = null,
   date = false,
 }) => (
@@ -18,7 +18,7 @@ const Card2 = ({
     >
       <div className="column is-3 column_img">
         <figure className="image is-square">
-          <img src={cube} alt="" />
+          <img src={img} alt="" />
         </figure>
       </div>
       <div className="column is-5">

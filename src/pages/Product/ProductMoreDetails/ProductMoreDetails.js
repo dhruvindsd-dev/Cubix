@@ -1,9 +1,12 @@
 import React, { useState } from "react";
+import { Redirect, useHistory, useLocation } from "react-router";
 import { axiosInstance, CACHE } from "../../../App";
 
 const ProductMoreDetails = ({ ProductData, isAuth }) => {
   // const [IsBtnLoading, setIsBtnLoading] = useState(false);
   // const [IsAdded, setIsAdded] = useState(false);
+  const history = useHistory();
+  const location = useLocation();
   const [State, setState] = useState({
     isBtnLoading: false,
     isAdded: false,
@@ -24,6 +27,11 @@ const ProductMoreDetails = ({ ProductData, isAuth }) => {
       });
     } else {
       // redirect to the product page against afte signing in
+      console.log("user is not auth");
+      history.push("/user/auth/signin", {
+        message: "Sign in to add item to wishlist ",
+        toRedirectAfterAuth: location.pathname,
+      });
     }
   };
 

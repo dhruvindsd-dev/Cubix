@@ -10,12 +10,19 @@ const SideBar = (props) => {
   const [IsOrderModalOpen, setIsOrderModalOpen] = useState(false);
 
   const handleOrder = () => {
-    axiosInstance.get("/place-order").then(() => {
-      props.clearCart();
-      // to sysnc the user with the latest orders
-      CACHE.delete("/orders");
-      props.history.push("/orders");
-    });
+    // if user is not auth then send to login page
+    if (!props.isAuth)
+      props.history.push("/user/auth/signup", {
+        message: "Sign In To Place Your Order",
+        toRedirectAfterAuth: props.location.pathname,
+      });
+    else
+      axiosInstance.get("/place-order").then(() => {
+        props.clearCart();
+        // to sysnc the user with the latest orders
+        CACHE.delete("/orders");
+        props.history.push("/orders");
+      });
   };
   return (
     <>
@@ -58,7 +65,9 @@ const SideBar = (props) => {
 };
 
 const mapStateToProps = (state) => {
-  return {};
+  return {
+    isAuth: state.auth.isAuthenticated,
+  };
 };
 const mapDispatchToProps = (dispatch) => {
   return {

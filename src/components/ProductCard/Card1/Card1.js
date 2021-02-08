@@ -1,21 +1,15 @@
 import { AnimatePresence, motion } from "framer-motion";
 import React from "react";
 import { withRouter } from "react-router";
-import Cube from "../../../assets/images/products/megamix.webp";
 import { getPriceFromDiscount } from "../../../shared";
 import Rating from "../../Rating/Rating";
-// import "./card1.css";
 const parentVarient = {
-  initial: {},
-  animate: {},
   hover: {
     scale: 1.05,
     backgroundColor: "#3a3a3a",
   },
 };
 const childVariant = {
-  initial: {},
-  animate: {},
   hover: {
     rotate: 45,
     scale: 1.2,
@@ -28,7 +22,6 @@ const Card1 = (props) => {
       onClick={() => {
         props.history.push(`/product/${props.smallCardObj.id}`);
       }}
-      initial="initial"
       whileHover="hover"
       className="notification hover-pointer is-dark"
     >
@@ -40,7 +33,11 @@ const Card1 = (props) => {
       >
         <figure className="image is-128x128">
           <AnimatePresence>
-            <motion.img variants={childVariant} src={Cube} alt="" />
+            <motion.img
+              variants={childVariant}
+              src={props.smallCardObj.img}
+              alt=""
+            />
           </AnimatePresence>
         </figure>
       </div>

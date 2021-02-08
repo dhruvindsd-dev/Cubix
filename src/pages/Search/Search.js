@@ -10,7 +10,13 @@ const Search = (props) => {
     isLoading: false,
     data: [],
   });
-  const searchParams = new URLSearchParams(props.location.search).get("search");
+  const searchParams = new URLSearchParams(props.location.search);
+  const search = searchParams.get("search");
+  const catagory = searchParams.get("catagory");
+  console.log(search);
+  console.log(catagory);
+
+  console.log(props.location.search);
   useEffect(() => {
     //   get query params to backend and get response and show it
     setState({
@@ -18,14 +24,14 @@ const Search = (props) => {
       isLoading: true,
     });
     axiosInstance
-      .get("product-search", { params: { search: searchParams } })
+      .get("product-search", { params: { search: search, catagory: catagory } })
       .then((response) => {
         setState({
           isLoading: false,
           data: response.data.products,
         });
       });
-  }, [searchParams]);
+  }, [search, catagory]);
   let results;
   if (State.isLoading) results = <Loader />;
   else if (State.data.length === 0)
@@ -55,8 +61,14 @@ const Search = (props) => {
       className="section"
     >
       <p className="is-size-3 has-text-weight-semibold is-size-4-mobile mb-4">
-        Showing Results for{" "}
-        <span className="has-text-primary">"{searchParams}"</span>
+        Showing Results for
+        {!!search ? (
+          <>
+            <span className="has-text-primary mx-2">"{search}"</span>
+            in
+          </>
+        ) : null}
+        <span className="has-text-primary ml-2">"{catagory}"</span>
       </p>
       {results}
     </motion.div>

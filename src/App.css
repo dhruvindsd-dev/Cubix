@@ -38,9 +38,9 @@ body {
 .l-opacity {
   opacity: 0.6;
 }
-img {
+/* img {
   border-radius: 20px;
-}
+} */
 .hover-pointer {
   cursor: pointer;
 }
