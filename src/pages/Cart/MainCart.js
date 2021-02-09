@@ -12,7 +12,6 @@ const MainCart = (props) => {
       if (!props.hasCartLoaded) {
         setIsLoading(true);
         axiosInstance.get("get-user-cart").then((response) => {
-          console.log(response.data);
           props.loadCart(response.data.products);
           setIsLoading(false);
         });

@@ -27,7 +27,6 @@ const ProductMoreDetails = ({ ProductData, isAuth }) => {
       });
     } else {
       // redirect to the product page against afte signing in
-      console.log("user is not auth");
       history.push("/user/auth/signin", {
         message: "Sign in to add item to wishlist ",
         toRedirectAfterAuth: location.pathname,

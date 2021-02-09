@@ -13,7 +13,6 @@ const Orders = (props) => {
     props.match.path
   );
   let orders;
-  console.log(data);
   if (isLoading) orders = <Loader />;
   else if (data.length === 0)
     orders = (

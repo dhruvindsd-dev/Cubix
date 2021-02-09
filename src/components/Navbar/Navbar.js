@@ -10,7 +10,6 @@ const Navbar = (props) => {
   const searchText = useRef(null);
   const catagoryOption = useRef(null);
   const handleScroll = (event) => {
-    console.log("scrolling ");
     if (window.scrollY > 50) {
       setisSpaced(false);
     } else {
@@ -18,10 +17,8 @@ const Navbar = (props) => {
     }
   };
   useEffect(() => {
-    console.log("initilaizer");
     window.addEventListener("scroll", handleScroll);
     return () => {
-      console.log("destory the event ");
       window.removeEventListener("scroll", handleScroll);
     };
   }, [isSpaced]);
@@ -29,17 +26,14 @@ const Navbar = (props) => {
     return null;
   }
   const handleSearch = () => {
-    console.log("handle search");
     props.history.push(
       `/search?search=${searchText.current.value}&catagory=${catagoryOption.current.value}`
     );
     searchText.current.value = "";
   };
-  console.log("from the navbat", props);
   const catagoryParamsForOptions = new URLSearchParams(
     props.location.search
   ).get("catagory");
-  console.log(catagoryParamsForOptions);
 
   return (
     <nav

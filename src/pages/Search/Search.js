@@ -14,7 +14,6 @@ const Search = (props) => {
   const search = searchParams.get("search");
   const catagory = searchParams.get("catagory");
 
-  console.log(props.location.search);
   useEffect(() => {
     //   get query params to backend and get response and show it
     setState({
