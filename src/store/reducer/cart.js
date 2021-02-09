@@ -16,7 +16,7 @@ export default (state = initialState, { type, payload }) => {
       localStorage.setItem("cart", JSON.stringify(cart));
       return { ...state, cart: cart };
     case actionTypes.REMOVE_ITEM:
-      // not using filter cause i want to only remove the first occurance and not all
+      // not using fizlter cause i want to only remove the first occurance and not all
       var cart = [];
       let isPush = true;
       for (let i of state.cart) {
