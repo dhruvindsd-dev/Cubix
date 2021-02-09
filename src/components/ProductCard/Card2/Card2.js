@@ -1,5 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
+import { Link } from "react-router-dom";
 import { getPriceFromDiscount } from "../../../shared";
 
 const Card2 = ({
@@ -23,8 +24,7 @@ const Card2 = ({
       </div>
       <div className="column is-5">
         <p className="is-size-4 is-size-6-touch has-text-weight-bold has-text-light">
-          {title}
-          {id}
+          <Link to={`/product/${id}`}>{title}</Link>
         </p>
         {date && <p>Ordered On {date}</p>}
       </div>
