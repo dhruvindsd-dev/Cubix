@@ -11,7 +11,7 @@
 .is-absolute {
   position: absolute;
   bottom: 0px;
-  z-index: 51;
+  z-index: 1;
 }
 img {
   object-fit: cover;

@@ -3,7 +3,6 @@ import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import { withRouter } from "react-router";
 import { axiosInstance, ROUTER_VARIANTS } from "../../App";
-import cube from "../../assets/images/HomeHeroCube.png";
 
 import Loader from "../../components/Loader/Loader";
 import ProductMoreDetails from "./ProductMoreDetails/ProductMoreDetails";

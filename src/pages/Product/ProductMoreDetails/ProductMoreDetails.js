@@ -43,7 +43,7 @@ const ProductMoreDetails = ({ ProductData, isAuth }) => {
       <br />
       <p className="is-size-6">
         <span className="l-opacity mr-1">Weight: </span>
-        {ProductData.weight_kg} kg
+        {ProductData.weight} grams
       </p>
       <p className="is-size-6">
         <span className="l-opacity mr-1">Color : </span>

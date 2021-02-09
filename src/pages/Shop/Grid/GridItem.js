@@ -12,7 +12,7 @@ const zoomVariants = {
 const GridItem = ({ img, title, linkName, figClass = "is-square" }) => {
   return (
     <motion.div className="column" whileHover="hover">
-      <div className="is-relative is-clipped" style={{ zIndex: 100 }}>
+      <div className="is-relative is-clipped">
         <Link
           to={`/search/?search=&catagory=${linkName}`}
           className="figure-black-gradient is-absolute"

@@ -13,8 +13,6 @@ const Search = (props) => {
   const searchParams = new URLSearchParams(props.location.search);
   const search = searchParams.get("search");
   const catagory = searchParams.get("catagory");
-  console.log(search);
-  console.log(catagory);
 
   console.log(props.location.search);
   useEffect(() => {

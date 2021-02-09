@@ -168,6 +168,9 @@ class InputList extends Component {
     for (let i in formClone) {
       formData.append(i, formClone[i].value);
     }
+    // there can be a possiblily that the user aldready has something in the cart, so while logging in or signing in the user sending the product ids  to the backend add the items in his cart .
+    let cartProductIds = this.props.cart.map((item) => item.id);
+    formData.append("cart", cartProductIds);
     if (this.props.isSignUp) url = "sign-up";
     this.setState({
       IsBtnLoading: true,
@@ -180,7 +183,6 @@ class InputList extends Component {
           response.data.username,
           response.data.email
         );
-        console.log(this.props.redirect);
         if (this.props.redirect) this.props.history.push(this.props.redirect);
         else this.props.history.push("/orders");
       })
@@ -231,7 +233,9 @@ class InputList extends Component {
 }
 
 const mapStateToProps = (state) => {
-  return {};
+  return {
+    cart: state.cart.cart,
+  };
 };
 const mapDispatchToProps = (dispatch) => {
   return {

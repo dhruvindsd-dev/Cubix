@@ -9,14 +9,21 @@ const Navbar = (props) => {
   const [IsActive, setIsActive] = useState(false);
   const searchText = useRef(null);
   const catagoryOption = useRef(null);
+  const handleScroll = (event) => {
+    console.log("scrolling ");
+    if (window.scrollY > 50) {
+      setisSpaced(false);
+    } else {
+      setisSpaced(true);
+    }
+  };
   useEffect(() => {
-    window.addEventListener("scroll", (event) => {
-      if (window.scrollY > 50) {
-        setisSpaced(false);
-      } else {
-        setisSpaced(true);
-      }
-    });
+    console.log("initilaizer");
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      console.log("destory the event ");
+      window.removeEventListener("scroll", handleScroll);
+    };
   }, [isSpaced]);
   if (props.location.pathname === "/") {
     return null;
@@ -28,6 +35,12 @@ const Navbar = (props) => {
     );
     searchText.current.value = "";
   };
+  console.log("from the navbat", props);
+  const catagoryParamsForOptions = new URLSearchParams(
+    props.location.search
+  ).get("catagory");
+  console.log(catagoryParamsForOptions);
+
   return (
     <nav
       className={
@@ -65,7 +78,13 @@ const Navbar = (props) => {
                   <select ref={catagoryOption} onChange={handleSearch}>
                     <option value="all">All</option>
                     {gridData.map((item) => (
-                      <option value={item.value}>{item.title}</option>
+                      <option
+                        key={item.value}
+                        selected={catagoryParamsForOptions === item.value}
+                        value={item.value}
+                      >
+                        {item.title}
+                      </option>
                     ))}
                   </select>
                 </span>
@@ -118,4 +137,4 @@ const mapStateToProps = (state) => {
     cart: state.cart.cart,
   };
 };
-export default withRouter(connect(mapStateToProps)(Navbar));
+export default withRouter(connect(mapStateToProps)(React.memo(Navbar)));

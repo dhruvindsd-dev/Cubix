@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { Link, withRouter } from "react-router-dom";
-import { axiosInstance, CACHE, ROUTER_VARIANTS } from "../../App";
+import { ROUTER_VARIANTS } from "../../App";
 import Loader from "../../components/Loader/Loader";
 import Card2 from "../../components/ProductCard/Card2/Card2";
 import useFetchWithCache from "../../Hooks/Fetch";
