@@ -67,6 +67,6 @@ span {
 
 @media (max-width: 1024px) {
   .no-mobile-section {
-    padding: 2.5rem 0rem;
+    padding: 2rem 0rem;
   }
 }

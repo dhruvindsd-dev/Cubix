@@ -17,7 +17,9 @@ import { AnimatePresence } from "framer-motion";
 // small bug : when the user logs in for the firsttime the headers are not added, since the instance has aldready been initilized, adding the logic to the inter ceptor will solve it
 
 export const axiosInstance = Axios.create({
-  baseURL: "https://cubix.pythonanywhere.com",
+  // http://127.0.0.1:8000
+  // https://cubix.pythonanywhere.com
+  baseURL: "http://127.0.0.1:8000",
   timeout: 5000,
 });
 

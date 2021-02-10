@@ -36,7 +36,7 @@ const Product = (props) => {
         <div className="columns">
           <div className="column is-4">
             <figure
-              className="image is-relative"
+              className="image"
               style={{
                 backgroundImage:
                   "radial-gradient(rgb(255, 0, 0), rgba(255, 0, 0, 0.445), rgba(0, 0, 0, 0), rgba(0, 0, 0, 0))",
@@ -44,7 +44,6 @@ const Product = (props) => {
             >
               <motion.img
                 src={State.data.img}
-                className="is-overlay"
                 style={{ objectFit: "contain" }}
               />
             </figure>
