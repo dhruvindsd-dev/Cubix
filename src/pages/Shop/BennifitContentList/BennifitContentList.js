@@ -1,6 +1,3 @@
-import { useEffect } from "react";
-import { axiosInstance, CACHE } from "../../../App";
-
 import React from "react";
 import BennifitContent from "../../../layouts/BennifitContent/BennifitContent";
 import Loader from "../../../components/Loader/Loader";

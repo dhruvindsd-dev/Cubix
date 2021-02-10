@@ -13,6 +13,14 @@ html {
 
 body {
   color: rgb(167, 167, 167);
+  min-height: 100%;
+}
+#root {
+  height: 100%;
+}
+html,
+body {
+  height: 100%;
 }
 
 .navbar {

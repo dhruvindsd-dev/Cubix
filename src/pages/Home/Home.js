@@ -1,5 +1,5 @@
 import React from "react";
-import whatCube from "../../assets/images/cube1.jpg";
+import whatCube from "../../assets/images/homeBanner.jpg";
 import { motion } from "framer-motion";
 import { ROUTER_VARIANTS } from "../../App";
 import { Link } from "react-router-dom";

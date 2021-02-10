@@ -17,7 +17,7 @@ import { AnimatePresence } from "framer-motion";
 // small bug : when the user logs in for the firsttime the headers are not added, since the instance has aldready been initilized, adding the logic to the inter ceptor will solve it
 
 export const axiosInstance = Axios.create({
-  baseURL: "http://127.0.0.1:8000/",
+  baseURL: "https://cubix.pythonanywhere.com",
   timeout: 3000,
 });
 
@@ -51,95 +51,100 @@ function App(props) {
   }
 
   return (
-    <>
-      <Navbar />
-      <AnimatePresence initial={true} exitBeforeEnter>
-        <Switch location={location} key={location.key}>
-          <Route
-            path="/"
-            exact
-            render={() => (
-              <Suspense
-                fallback={
-                  <div
-                    style={{
-                      minHeight: "100vh",
-                      position: "absolute",
-                      top: 0,
-                      left: 0,
-                      width: "100%",
-                      zIndex: 31,
-                    }}
-                    className="has-background-black"
-                  ></div>
-                }
-              >
-                <Home />
-              </Suspense>
-            )}
-          />
-          <Route
-            path="/shop"
-            exact
-            render={() => (
-              <Suspense fallback={<Loader />}>
-                <Shop />
-              </Suspense>
-            )}
-          />
-          <Route
-            path="/user/auth/:type"
-            render={() => (
-              <Suspense fallback={<Loader />}>
-                <UserAuth />
-              </Suspense>
-            )}
-          />
-          <Route
-            path="/orders"
-            render={() => (
-              <Suspense fallback={<Loader />}>
-                {/* // @ts-ignore */}
-                <Orders />
-              </Suspense>
-            )}
-          />
-          <Route
-            path="/product/:id"
-            render={() => (
-              <Suspense fallback={<Loader />}>
-                <Product />
-              </Suspense>
-            )}
-          />
-          <Route
-            path="/cart"
-            render={() => (
-              <Suspense fallback={<Loader />}>
-                <Cart />
-              </Suspense>
-            )}
-          />
-          <Route
-            path="/search"
-            render={() => (
-              <Suspense fallback={<Loader />}>
-                <Search />
-              </Suspense>
-            )}
-          />
-          <Route
-            path="/wishlist"
-            render={() => (
-              <Suspense fallback={<Loader />}>
-                <WishList />
-              </Suspense>
-            )}
-          />
-        </Switch>
-      </AnimatePresence>
-      <Footer />
-    </>
+    <div style={{ display: "flex", flexDirection: "column", height: "100%" }}>
+      {/* sticy footer using flexbox */}
+      <div style={{ flex: "1 0 auto" }}>
+        <Navbar />
+        <AnimatePresence initial={true} exitBeforeEnter>
+          <Switch location={location} key={location.key}>
+            <Route
+              path="/"
+              exact
+              render={() => (
+                <Suspense
+                  fallback={
+                    <div
+                      style={{
+                        minHeight: "100vh",
+                        position: "absolute",
+                        top: 0,
+                        left: 0,
+                        width: "100%",
+                        zIndex: 31,
+                      }}
+                      className="has-background-black"
+                    ></div>
+                  }
+                >
+                  <Home />
+                </Suspense>
+              )}
+            />
+            <Route
+              path="/shop"
+              exact
+              render={() => (
+                <Suspense fallback={<Loader />}>
+                  <Shop />
+                </Suspense>
+              )}
+            />
+            <Route
+              path="/user/auth/:type"
+              render={() => (
+                <Suspense fallback={<Loader />}>
+                  <UserAuth />
+                </Suspense>
+              )}
+            />
+            <Route
+              path="/orders"
+              render={() => (
+                <Suspense fallback={<Loader />}>
+                  {/* // @ts-ignore */}
+                  <Orders />
+                </Suspense>
+              )}
+            />
+            <Route
+              path="/product/:id"
+              render={() => (
+                <Suspense fallback={<Loader />}>
+                  <Product />
+                </Suspense>
+              )}
+            />
+            <Route
+              path="/cart"
+              render={() => (
+                <Suspense fallback={<Loader />}>
+                  <Cart />
+                </Suspense>
+              )}
+            />
+            <Route
+              path="/search"
+              render={() => (
+                <Suspense fallback={<Loader />}>
+                  <Search />
+                </Suspense>
+              )}
+            />
+            <Route
+              path="/wishlist"
+              render={() => (
+                <Suspense fallback={<Loader />}>
+                  <WishList />
+                </Suspense>
+              )}
+            />
+          </Switch>
+        </AnimatePresence>
+      </div>
+      <div style={{ flexShrink: 0 }}>
+        <Footer />
+      </div>
+    </div>
   );
 }
 
