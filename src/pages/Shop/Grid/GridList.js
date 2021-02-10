@@ -56,7 +56,7 @@ const GridList = () => {
 
   return (
     <div className="section">
-      <p className="title has-text-primary">Shop By Catagories</p>
+      <p className="title has-text-primary">Shop By Categories</p>
       <div className="columns">{section1}</div>
       <div className="columns">{section2}</div>
       <div className="columns">{section3}</div>
