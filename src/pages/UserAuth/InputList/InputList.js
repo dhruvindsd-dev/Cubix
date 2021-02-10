@@ -189,8 +189,8 @@ class InputList extends Component {
       .catch((err) => {
         let error;
         if (err.response.data.error === "user_exists")
-          error = "User aldready exixts. Please create a new username ";
-        else error = "Invlid Credentials";
+          error = "User already exists. Please create a new username ";
+        else error = "Invalid Credentials";
         this.setState({
           errorMsg: error,
           IsBtnLoading: false,
