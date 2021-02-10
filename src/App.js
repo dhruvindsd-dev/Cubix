@@ -18,7 +18,7 @@ import { AnimatePresence } from "framer-motion";
 
 export const axiosInstance = Axios.create({
   baseURL: "https://cubix.pythonanywhere.com",
-  timeout: 3000,
+  timeout: 5000,
 });
 
 export const CACHE = new Map();
