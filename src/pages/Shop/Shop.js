@@ -37,7 +37,7 @@ const HomeNewProduct = () => (
           Introducing Yj Yulong 3X3 Speed Cube.
         </p>
         <p className="subtitle has-text-white  is-size-4-desktop is-size-6-touch l-opacity">
-          A perfect balance of exhilirating smoothness and exceptional design.
+          A perfect balance of exhilarating smoothness and exceptional design.
         </p>
         <br />
         <Link to="/product/1" className="button is-primary is-rounded is-large">
