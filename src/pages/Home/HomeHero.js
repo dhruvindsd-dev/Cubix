@@ -159,7 +159,7 @@ const HomeHero = () => {
           variants={callToActionVariant}
         >
           <p className="subtitle is-4-desktop  has-text-light">
-            Buy Our High Quality Puzzels Today.
+            Buy Our High Quality Puzzles Today.
           </p>
           <Link to="/shop" className="button is-primary is-medium">
             Buy Now
@@ -189,7 +189,7 @@ const HomeHero = () => {
       >
         <motion.div initial={{ opacity: 0, y: 100 }} variants={quoteVariant}>
           <p className="is-size-3-desktop is-size-4-touch has-text-weight-semibold popins">
-            “The problems of puzzles are very near the problemsof life.”
+            “The problems of puzzles are very near the problems of life.”
           </p>
           <p className="is-size-4-desktop is-size-5-touch">- Erno Rubik</p>
         </motion.div>
