@@ -33,7 +33,7 @@ const Home = () => {
         </div>
         <div className="columns is-centered">
           <div className="column is-8">
-            <p className="title has-text-light">Bennifits OF THE CUBE. </p>
+            <p className="title has-text-light">Benefits of the CUBE. </p>
             <div className="mt-6">
               <div className="columns is-multiline">
                 <div className="column is-4">
