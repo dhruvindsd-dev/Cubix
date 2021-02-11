@@ -35,7 +35,7 @@ const Search = (props) => {
     results = (
       <p className="is-size-5-desktop has-text-primary l-opacity">
         No results <br />
-        Try Seaching Something Else
+        Try Searching Something Else
       </p>
     );
   else
