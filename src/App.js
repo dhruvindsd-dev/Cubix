@@ -41,6 +41,21 @@ export const ROUTER_VARIANTS = {
   exit: { opacity: 0, x: 100, transition: { duration: 0.1 } },
 };
 
+export const Card2StaggerParent = {
+  animate: {
+    transition: {
+      // delayChildren: 0.5,
+      staggerChildren: 0.2,
+    },
+  },
+};
+export const Card2StaggerChild = {
+  initial: { x: -30, opacity: 0 },
+  animate: {
+    x: 0,
+    opacity: 1,
+  },
+};
 function App(props) {
   const location = useLocation();
   // auto login

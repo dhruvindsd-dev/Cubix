@@ -1,3 +1,4 @@
+import { motion } from "framer-motion";
 import React from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
@@ -12,39 +13,37 @@ const Card2 = ({
   removeClick = null,
   date = false,
 }) => (
-  <>
-    <div
-      className="columns has-background-dark  mb-3 hover_scale is-mobile"
-      style={{ padding: 0, margin: 0 }}
-    >
-      <div className="column is-3 column_img">
-        <figure className="image is-square">
-          <img src={img} alt="" />
-        </figure>
-      </div>
-      <div className="column is-5">
-        <p className="is-size-4 is-size-6-touch has-text-weight-bold has-text-light">
-          <Link to={`/product/${id}`}>{title}</Link>
-        </p>
-        {date && <p>Ordered On {date}</p>}
-      </div>
-      <div className="column has-text-right">
-        <p className="is-size-5-desktop has-text-light l-opacity">
-          <sup>₹</sup>
-          {getPriceFromDiscount(price, discount)}
-        </p>
-        {removeClick ? (
-          <button
-            // style={{ position: "absolute", bottom: "0px", right: "0px" }}
-            className="button is-primary is-small is-outlined mt-1"
-            onClick={removeClick}
-          >
-            Remove
-          </button>
-        ) : null}
-      </div>
+  <div
+    className="columns has-background-dark  mb-3 hover_scale is-mobile"
+    style={{ padding: 0, margin: 0 }}
+  >
+    <div className="column is-3 column_img">
+      <figure className="image is-square">
+        <img src={img} alt="" />
+      </figure>
     </div>
-  </>
+    <div className="column is-5">
+      <p className="is-size-4 is-size-6-touch has-text-weight-bold has-text-light">
+        <Link to={`/product/${id}`}>{title}</Link>
+      </p>
+      {date && <p>Ordered On {date}</p>}
+    </div>
+    <div className="column has-text-right">
+      <p className="is-size-5-desktop has-text-light l-opacity">
+        <sup>₹</sup>
+        {getPriceFromDiscount(price, discount)}
+      </p>
+      {removeClick ? (
+        <button
+          // style={{ position: "absolute", bottom: "0px", right: "0px" }}
+          className="button is-primary is-small is-outlined mt-1"
+          onClick={removeClick}
+        >
+          Remove
+        </button>
+      ) : null}
+    </div>
+  </div>
 );
 
 const mapStateToProps = (state) => {

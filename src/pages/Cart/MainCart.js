@@ -1,6 +1,11 @@
+import { motion } from "framer-motion";
 import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
-import { axiosInstance } from "../../App";
+import {
+  axiosInstance,
+  Card2StaggerChild,
+  Card2StaggerParent,
+} from "../../App";
 import Loader from "../../components/Loader/Loader";
 import Card2 from "../../components/ProductCard/Card2/Card2";
 import { LOAD_CART, REMOVE_ITEM } from "../../store/actions/actions";
@@ -29,19 +34,26 @@ const MainCart = (props) => {
   let cartItems;
   if (IsLoading) cartItems = <Loader />;
   else if (props.cart.length > 0)
-    cartItems = props.cart.map((item, i) => (
-      <Card2
-        title={item.title}
-        price={item.price}
-        discount={item.discount}
-        id={item.id}
-        img={item.img}
-        removeClick={handleRemoveItem.bind(this, item.id)}
-        key={i}
-      />
-    ));
+    // if i dierctly assign props to cartItems staggering will not work
+    cartItems = (
+      <motion.div variants={Card2StaggerParent}>
+        {props.cart.map((item, i) => (
+          <motion.div variants={Card2StaggerChild} className="this is a test ">
+            <Card2
+              title={item.title}
+              price={item.price}
+              discount={item.discount}
+              id={item.id}
+              img={item.img}
+              removeClick={handleRemoveItem.bind(this, item.id)}
+              key={i}
+            />
+          </motion.div>
+        ))}
+      </motion.div>
+    );
   else cartItems = <p>No Items Found In The Cart </p>;
-  return <>{cartItems}</>;
+  return cartItems;
 };
 
 const mapStateToProps = (state) => {

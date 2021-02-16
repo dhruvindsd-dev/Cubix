@@ -1,7 +1,11 @@
 import { motion } from "framer-motion";
 import React from "react";
 import { Link, withRouter } from "react-router-dom";
-import { ROUTER_VARIANTS } from "../../App";
+import {
+  Card2StaggerChild,
+  Card2StaggerParent,
+  ROUTER_VARIANTS,
+} from "../../App";
 import Loader from "../../components/Loader/Loader";
 import Card2 from "../../components/ProductCard/Card2/Card2";
 import useFetchWithCache from "../../Hooks/Fetch";
@@ -22,17 +26,23 @@ const Orders = (props) => {
       </p>
     );
   else
-    orders = data.map((item, i) => (
-      <Card2
-        title={item.title}
-        date={item.date}
-        price={item.price}
-        discount={item.discount}
-        img={item.img}
-        id={item.id}
-        key={i}
-      />
-    ));
+    orders = (
+      <motion.div variants={Card2StaggerParent}>
+        {data.map((item, i) => (
+          <motion.div variants={Card2StaggerChild} className="this is a test ">
+            <Card2
+              title={item.title}
+              price={item.price}
+              discount={item.discount}
+              id={item.id}
+              date={item.date}
+              img={item.img}
+              key={i}
+            />
+          </motion.div>
+        ))}
+      </motion.div>
+    );
 
   return (
     <motion.div
