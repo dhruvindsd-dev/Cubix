@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import React, { useEffect, useState } from "react";
 import { FaFacebookSquare, FaGoogle } from "react-icons/fa";
-import { Link, withRouter } from "react-router-dom";
+import { withRouter } from "react-router-dom";
 import { ROUTER_VARIANTS } from "../../App";
 import Logo from "../../components/Logo/Logo";
 import InputList from "./InputList/InputList";
