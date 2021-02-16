@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import React, { useEffect, useState } from "react";
+import { FaFacebookSquare, FaGoogle } from "react-icons/fa";
 import { Link, withRouter } from "react-router-dom";
 import { ROUTER_VARIANTS } from "../../App";
 import Logo from "../../components/Logo/Logo";
@@ -63,13 +64,13 @@ const UserAuth = (props) => {
             <div className="buttons is-centered">
               <button className="button is-light is-link is-outlined     ">
                 <span className="icon">
-                  <i className="fab fa-google"></i>
+                  <FaGoogle />
                 </span>
                 <span>Google</span>
               </button>
               <button className="button is-light is-link is-outlined     ">
                 <span className="icon">
-                  <i className="fab fa-facebook-square"></i>
+                  <FaFacebookSquare />
                 </span>
                 <span>FaceBook</span>
               </button>

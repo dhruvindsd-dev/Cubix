@@ -1,11 +1,7 @@
 import { motion } from "framer-motion";
 import React from "react";
 import { Link, withRouter } from "react-router-dom";
-import {
-  Card2StaggerChild,
-  Card2StaggerParent,
-  ROUTER_VARIANTS,
-} from "../../App";
+import { Card2StaggerParent, ROUTER_VARIANTS } from "../../App";
 import Loader from "../../components/Loader/Loader";
 import Card2 from "../../components/ProductCard/Card2/Card2";
 import useFetchWithCache from "../../Hooks/Fetch";
@@ -29,17 +25,15 @@ const Orders = (props) => {
     orders = (
       <motion.div variants={Card2StaggerParent}>
         {data.map((item, i) => (
-          <motion.div variants={Card2StaggerChild} className="this is a test ">
-            <Card2
-              title={item.title}
-              price={item.price}
-              discount={item.discount}
-              id={item.id}
-              date={item.date}
-              img={item.img}
-              key={i}
-            />
-          </motion.div>
+          <Card2
+            title={item.title}
+            price={item.price}
+            discount={item.discount}
+            id={item.id}
+            date={item.date}
+            img={item.img}
+            key={i}
+          />
         ))}
       </motion.div>
     );

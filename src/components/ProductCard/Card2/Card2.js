@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import React from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
+import { Card2StaggerChild } from "../../../App";
 import { getPriceFromDiscount } from "../../../shared";
 
 const Card2 = ({
@@ -13,7 +14,10 @@ const Card2 = ({
   removeClick = null,
   date = false,
 }) => (
-  <div
+  <motion.div
+    variants={Card2StaggerChild}
+    animate={{ opacity: 1 }}
+    exit={{ opacity: 0, x: -100, rotateZ: -10 }}
     className="columns has-background-dark  mb-3 hover_scale is-mobile"
     style={{ padding: 0, margin: 0 }}
   >
@@ -35,7 +39,6 @@ const Card2 = ({
       </p>
       {removeClick ? (
         <button
-          // style={{ position: "absolute", bottom: "0px", right: "0px" }}
           className="button is-primary is-small is-outlined mt-1"
           onClick={removeClick}
         >
@@ -43,7 +46,7 @@ const Card2 = ({
         </button>
       ) : null}
     </div>
-  </div>
+  </motion.div>
 );
 
 const mapStateToProps = (state) => {

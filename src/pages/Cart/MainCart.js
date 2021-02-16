@@ -1,4 +1,4 @@
-import { motion } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import {
@@ -37,8 +37,8 @@ const MainCart = (props) => {
     // if i dierctly assign props to cartItems staggering will not work
     cartItems = (
       <motion.div variants={Card2StaggerParent}>
-        {props.cart.map((item, i) => (
-          <motion.div variants={Card2StaggerChild} className="this is a test ">
+        <AnimatePresence>
+          {props.cart.map((item) => (
             <Card2
               title={item.title}
               price={item.price}
@@ -46,10 +46,10 @@ const MainCart = (props) => {
               id={item.id}
               img={item.img}
               removeClick={handleRemoveItem.bind(this, item.id)}
-              key={i}
+              key={item.id}
             />
-          </motion.div>
-        ))}
+          ))}
+        </AnimatePresence>
       </motion.div>
     );
   else cartItems = <p>No Items Found In The Cart </p>;

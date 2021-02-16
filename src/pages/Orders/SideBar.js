@@ -1,4 +1,5 @@
 import React from "react";
+import { GrList } from "react-icons/gr";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import { LOGOUT } from "../../store/actions/actions";
@@ -11,7 +12,7 @@ const SideBar = ({ username, email, logout }) => (
         <p className="is-size-5">{email}</p>
         <Link to="/wishlist" className=" my-3 button is-primary  is-fullwidth">
           <span className="icon">
-            <i className="fas fa-list-ul"></i>
+            <GrList />
           </span>
           <span>My Wishlist</span>
         </Link>

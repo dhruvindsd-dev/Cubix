@@ -1,4 +1,5 @@
 import React from "react";
+import { GiRoundStar } from "react-icons/gi";
 
 const Rating = ({ num }) => {
   if (num <= 0) return null;
@@ -9,7 +10,7 @@ const Rating = ({ num }) => {
         {Array(num)
           .fill(1)
           .map((_, i) => (
-            <i key={i} className="fas fa-star has-text-warning"></i>
+            <GiRoundStar key={i} fill="yellow" />
           ))}
       </span>
       <br />

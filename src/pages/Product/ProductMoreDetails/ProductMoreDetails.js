@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { GrFormCheckmark, GrList } from "react-icons/gr";
 import { Redirect, useHistory, useLocation } from "react-router";
 import { axiosInstance, CACHE } from "../../../App";
 
@@ -64,9 +65,11 @@ const ProductMoreDetails = ({ ProductData, isAuth }) => {
         }
       >
         <span className="icon">
-          <i
-            className={"fas " + (State.isAdded ? "fa-check" : "fa-list-ul")}
-          ></i>
+          {State.isAdded ? (
+            <GrFormCheckmark size={100} fill="green" />
+          ) : (
+            <GrList />
+          )}
         </span>
         <span>
           {State.isAdded ? "Item Added To Wishlist" : "Add Item To Wishlist"}

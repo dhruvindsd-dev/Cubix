@@ -1,12 +1,7 @@
-import { motion } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import React from "react";
 import { withRouter } from "react-router";
-import {
-  axiosInstance,
-  Card2StaggerChild,
-  Card2StaggerParent,
-  ROUTER_VARIANTS,
-} from "../../App";
+import { axiosInstance, Card2StaggerParent, ROUTER_VARIANTS } from "../../App";
 import Loader from "../../components/Loader/Loader";
 import Card2 from "../../components/ProductCard/Card2/Card2";
 import useFetchWithCache from "../../Hooks/Fetch";
@@ -31,22 +26,20 @@ const WishList = (props) => {
         className="columns section is-multiline"
         variants={Card2StaggerParent}
       >
-        {data.map((item, i) => (
-          <motion.div
-            variants={Card2StaggerChild}
-            className="column is-4"
-            key={i}
-          >
-            <Card2
-              title={item.title}
-              price={item.price}
-              discount={item.discount}
-              id={item.id}
-              img={item.img}
-              removeClick={handleRemove.bind(this, item.id)}
-            />
-          </motion.div>
-        ))}
+        <AnimatePresence>
+          {data.map((item) => (
+            <div className="column is-3" key={item.id}>
+              <Card2
+                title={item.title}
+                price={item.price}
+                discount={item.discount}
+                id={item.id}
+                img={item.img}
+                removeClick={handleRemove.bind(this, item.id)}
+              />
+            </div>
+          ))}
+        </AnimatePresence>
       </motion.div>
     );
 

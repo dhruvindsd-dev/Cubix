@@ -1,4 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
+import { FaSearch } from "react-icons/fa";
+import { GrUser } from "react-icons/gr";
+import { RiShoppingCart2Line } from "react-icons/ri";
 import { connect } from "react-redux";
 import { Link, NavLink, withRouter } from "react-router-dom";
 import { gridData } from "../../pages/Shop/Grid/GridList";
@@ -94,7 +97,7 @@ const Navbar = (props) => {
               <div className="control">
                 <button className="button is-primary" onClick={handleSearch}>
                   <span className="icon">
-                    <i className="fas fa-search"></i>
+                    <FaSearch />
                   </span>
                 </button>
               </div>
@@ -106,7 +109,7 @@ const Navbar = (props) => {
             className="navbar-item"
           >
             <span className="icon has-text-light is-large is-size-4">
-              <i className="fas fa-user" />
+              <GrUser />
             </span>
           </NavLink>
           <NavLink
@@ -115,9 +118,8 @@ const Navbar = (props) => {
             className="navbar-item cart"
           >
             <span className="icon has-text-light is-large is-size-4 has-text-weight-bold">
-              <i className="fas fa-shopping-cart">
-                <span className="cart-counter">{props.cart.length}</span>
-              </i>
+              <RiShoppingCart2Line />
+              <span className="cart-counter">{props.cart.length}</span>
             </span>
           </NavLink>
         </div>

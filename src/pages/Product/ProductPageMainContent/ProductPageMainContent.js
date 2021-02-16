@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { RiShoppingCart2Line } from "react-icons/ri";
 import { connect } from "react-redux";
 import { withRouter } from "react-router";
 import { axiosInstance } from "../../../App";
@@ -74,8 +75,8 @@ const ProductPageMainContent = (props) => {
         }
         onClick={handleAddCart}
       >
-        <span className="icon is-size-7">
-          <i className="fas fa-shopping-cart" />
+        <span className="icon ">
+          <RiShoppingCart2Line />
         </span>
         <span>Add To Cart</span>
       </button>

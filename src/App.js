@@ -2,7 +2,6 @@ import React, { lazy, Suspense } from "react";
 import { Route, Switch, useLocation } from "react-router";
 import "./assets/css/bulma/bulma.css";
 import "./App.css";
-import "../node_modules/@fortawesome/fontawesome-free/css/all.css";
 import Navbar from "./components/Navbar/Navbar";
 import Axios from "axios";
 import Footer from "./components/Footer/Footer";
@@ -10,6 +9,7 @@ import { connect } from "react-redux";
 import { LOGIN } from "./store/actions/actions";
 import Loader from "./components/Loader/Loader";
 import { AnimatePresence } from "framer-motion";
+import Test from "./pages/Test/Test";
 
 // CONVENTION TO FOLLOW for one time use components : - dump ones => same file different function wiht memo maybe
 // smert ones =>same folder different file
@@ -155,6 +155,7 @@ function App(props) {
                 </Suspense>
               )}
             />
+            <Route path="/test" component={Test} />
           </Switch>
         </AnimatePresence>
       </div>
