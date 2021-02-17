@@ -18,7 +18,7 @@ import { AnimatePresence } from "framer-motion";
 export const axiosInstance = Axios.create({
   // http://127.0.0.1:8000
   // https://cubix.pythonanywhere.com
-  baseURL: "http://127.0.0.1:8000",
+  baseURL: "https://cubix.pythonanywhere.com",
   timeout: 5000,
 });
 
