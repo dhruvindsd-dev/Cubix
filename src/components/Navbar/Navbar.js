@@ -108,8 +108,8 @@ const Navbar = (props) => {
             to={props.authState ? "/orders" : "/user/auth/signup"}
             className="navbar-item"
           >
-            <span className="icon has-text-light is-large is-size-4">
-              <GrUser />
+            <span className="icon is-large is-size-4">
+              <GrUser fill="white" />
             </span>
           </NavLink>
           <NavLink

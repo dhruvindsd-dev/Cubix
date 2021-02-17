@@ -9,7 +9,6 @@ import { connect } from "react-redux";
 import { LOGIN } from "./store/actions/actions";
 import Loader from "./components/Loader/Loader";
 import { AnimatePresence } from "framer-motion";
-import Test from "./pages/Test/Test";
 
 // CONVENTION TO FOLLOW for one time use components : - dump ones => same file different function wiht memo maybe
 // smert ones =>same folder different file
@@ -155,7 +154,6 @@ function App(props) {
                 </Suspense>
               )}
             />
-            <Route path="/test" component={Test} />
           </Switch>
         </AnimatePresence>
       </div>

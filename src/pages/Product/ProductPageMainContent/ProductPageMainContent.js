@@ -24,7 +24,7 @@ const ProductPageMainContent = (props) => {
     } else history.push("/cart");
   };
   return (
-    <div className="no-mobile-section">
+    <div className="no-mobile-section pb-0">
       <p>
         <span className="is-size-3 has-text-weight-bold">
           {ProductData.title}

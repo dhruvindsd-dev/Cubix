@@ -5,17 +5,18 @@ import { withRouter } from "react-router";
 import { axiosInstance, ROUTER_VARIANTS } from "../../App";
 
 import Loader from "../../components/Loader/Loader";
+import BennifitContent from "../../layouts/BennifitContent/BennifitContent";
 import ProductMoreDetails from "./ProductMoreDetails/ProductMoreDetails";
 import ProductPageMainContent from "./ProductPageMainContent/ProductPageMainContent";
 
-const Product = (props) => {
+const Product = ({ match, isAuthenticated }) => {
   const [State, setState] = useState({
     isLoading: true,
     data: null,
   });
   useEffect(() => {
     axiosInstance
-      .get(`get-product-data/${props.match.params.id}`)
+      .get(`get-product-data/${match.params.id}`)
       .then((response) => {
         setState({
           isLoading: false,
@@ -42,25 +43,29 @@ const Product = (props) => {
                   "radial-gradient(rgb(255, 0, 0), rgba(255, 0, 0, 0.445), rgba(0, 0, 0, 0), rgba(0, 0, 0, 0))",
               }}
             >
-              <motion.img
-                src={State.data.img}
+              <img
+                src={State.data.product.img}
                 style={{ objectFit: "contain" }}
               />
             </figure>
           </div>
           <div className="column is-5">
             <ProductPageMainContent
-              isAuth={props.isAuthenticated}
-              ProductData={State.data}
+              isAuth={isAuthenticated}
+              ProductData={State.data.product}
             />
           </div>
           <div className="column is-3">
             <ProductMoreDetails
-              isAuth={props.isAuthenticated}
-              ProductData={State.data}
+              isAuth={isAuthenticated}
+              ProductData={State.data.product}
             />
           </div>
         </div>
+        <BennifitContent
+          title="Similar Products"
+          cards={State.data.recomendation}
+        />
       </div>
     </motion.div>
   );
