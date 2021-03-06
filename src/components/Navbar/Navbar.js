@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
-import { FaSearch } from "react-icons/fa";
+import { FaRegUser, FaSearch } from "react-icons/fa";
 import { GrUser } from "react-icons/gr";
 import { RiShoppingCart2Line } from "react-icons/ri";
 import { connect } from "react-redux";
@@ -109,7 +109,7 @@ const Navbar = (props) => {
             className="navbar-item"
           >
             <span className="icon is-large is-size-4">
-              <GrUser fill="white" />
+              <FaRegUser />
             </span>
           </NavLink>
           <NavLink
