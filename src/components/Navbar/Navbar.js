@@ -1,6 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
 import { FaRegUser, FaSearch } from "react-icons/fa";
-import { GrUser } from "react-icons/gr";
 import { RiShoppingCart2Line } from "react-icons/ri";
 import { connect } from "react-redux";
 import { Link, NavLink, withRouter } from "react-router-dom";

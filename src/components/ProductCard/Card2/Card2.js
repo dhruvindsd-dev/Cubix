@@ -28,7 +28,9 @@ const Card2 = ({
     </div>
     <div className="column is-5">
       <p className="is-size-4 is-size-6-touch has-text-weight-bold has-text-light">
-        <Link to={`/product/${id}`}>{title}</Link>
+        <Link to={`/product/${id}`} className="l-opacity">
+          {title}
+        </Link>
       </p>
       {date && <p>Ordered On {date}</p>}
     </div>

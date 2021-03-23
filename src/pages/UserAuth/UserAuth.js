@@ -4,7 +4,7 @@ import { FaFacebookSquare, FaGoogle } from "react-icons/fa";
 import { withRouter } from "react-router-dom";
 import { ROUTER_VARIANTS } from "../../App";
 import Logo from "../../components/Logo/Logo";
-import InputList from "./InputList/InputList";
+import HooksForm from "./InputList/HooksForm";
 
 const UserAuth = (props) => {
   const [IsSignUp, setIsSignUp] = useState(false);
@@ -76,10 +76,7 @@ const UserAuth = (props) => {
               </button>
             </div>
             <p className="my-3 has-text-weight-bold"> - OR - </p>
-            <InputList
-              isSignUp={IsSignUp}
-              redirect={routeState ? routeState.toRedirectAfterAuth : null}
-            />
+            <HooksForm isSignUp={IsSignUp} />
           </div>
         </div>
       </div>
